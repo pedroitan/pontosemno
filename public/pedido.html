@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seu pedido · Ponto Sem Nó</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F5EFE4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="module" src="/assets/pedido.js"></script>
+</head>
+<body>
+<nav class="nav" aria-label="Principal">
+  <div class="wrap">
+    <a class="logo" href="/">Ponto <em>Sem Nó</em></a>
+    <a class="btn-link" href="/#catalogo">Voltar à loja</a>
+  </div>
+</nav>
+<main class="pagina">
+  <div class="wrap">
+    <div class="status-pedido" id="status">
+      <span class="selo" id="selo">Verificando</span>
+      <h1 id="titulo">Conferindo seu <em>pagamento…</em></h1>
+      <p class="nota" id="texto" style="font-size:17px">Isso leva só alguns segundos.</p>
+      <div id="itens"></div>
+      <dl class="totais" id="totais" hidden>
+        <dt>Subtotal</dt><dd id="p-subtotal"></dd>
+        <dt>Frete</dt><dd id="p-frete"></dd>
+        <dt class="total">Total</dt><dd class="total" id="p-total"></dd>
+      </dl>
+      <div class="hero-actions" id="acoes"></div>
+      <p class="nota">Código do pedido: <span id="codigo" style="font-variant-numeric:tabular-nums"></span></p>
+    </div>
+  </div>
+</main>
+</body>
+</html>

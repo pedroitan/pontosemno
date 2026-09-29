@@ -1,0 +1,22 @@
+name = "ponto-sem-no"
+pages_build_output_dir = "public"
+compatibility_date = "2025-09-01"
+
+# Variáveis públicas (não secretas). Secrets vão em .dev.vars (local)
+# e em Settings > Variables and Secrets no painel do Cloudflare Pages.
+[vars]
+# URL pública do site. Em branco = usa a origem da requisição (bom para dev local).
+SITE_URL = ""
+# Frete fixo em centavos (2500 = R$ 25,00). AJUSTE antes de publicar.
+SHIPPING_FLAT_CENTS = "2500"
+# Frete grátis a partir deste subtotal em centavos. Em branco = desativado.
+FREE_SHIPPING_MIN_CENTS = ""
+# Minutos que uma peça fica reservada enquanto o cliente paga.
+RESERVATION_MINUTES = "30"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ponto-sem-no"
+# Rode `npx wrangler d1 create ponto-sem-no` e cole aqui o database_id retornado.
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"

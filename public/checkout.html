@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finalizar compra · Ponto Sem Nó</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F5EFE4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="module" src="/assets/checkout.js"></script>
+</head>
+<body>
+<nav class="nav" aria-label="Principal">
+  <div class="wrap">
+    <a class="logo" href="/">Ponto <em>Sem Nó</em></a>
+    <a class="btn-link" href="/#catalogo">Continuar comprando</a>
+  </div>
+</nav>
+
+<main class="pagina">
+  <div class="wrap">
+    <span class="eyebrow">Checkout</span>
+    <h1>Finalizar <em>compra</em></h1>
+
+    <div id="vazio" hidden>
+      <p class="nota" style="font-size:18px;margin-block:16px 24px">Sua sacola está vazia.</p>
+      <a class="btn btn-solid" href="/#catalogo">Ver o catálogo</a>
+    </div>
+
+    <div class="checkout-grid" id="conteudo" hidden>
+      <form class="form" id="form" novalidate>
+        <div class="msg erro" id="erro" role="alert" hidden></div>
+
+        <fieldset>
+          <legend>Seus dados</legend>
+          <div class="campo"><label for="nome">Nome completo</label><input id="nome" name="name" autocomplete="name" required></div>
+          <div class="campo c3"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div class="campo c3"><label for="telefone">WhatsApp</label><input id="telefone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(71) 99999-9999" required></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Entrega</legend>
+          <div class="campo c2"><label for="cep">CEP</label><input id="cep" name="cep" autocomplete="postal-code" inputmode="numeric" maxlength="9" placeholder="00000-000" required></div>
+          <div class="campo c4"><label for="rua">Rua</label><input id="rua" name="street" autocomplete="address-line1" required></div>
+          <div class="campo c2"><label for="numero">Número</label><input id="numero" name="number" required></div>
+          <div class="campo c4"><label for="complemento">Complemento</label><input id="complemento" name="complement" autocomplete="address-line2"></div>
+          <div class="campo"><label for="bairro">Bairro</label><input id="bairro" name="district" required></div>
+          <div class="campo c4"><label for="cidade">Cidade</label><input id="cidade" name="city" autocomplete="address-level2" required></div>
+          <div class="campo c2"><label for="uf">UF</label><input id="uf" name="state" autocomplete="address-level1" maxlength="2" required></div>
+        </fieldset>
+
+        <button class="btn btn-solid" id="pagar" type="submit">Ir para o pagamento</button>
+        <p class="seguro">Você será levada ao Mercado Pago para pagar com Pix, cartão ou boleto. As peças ficam reservadas por <span id="minutos">30</span> minutos.</p>
+      </form>
+
+      <aside class="resumo" aria-labelledby="resumo-titulo">
+        <h2 id="resumo-titulo">Resumo</h2>
+        <div id="resumo-itens"></div>
+        <dl class="totais">
+          <dt>Subtotal</dt><dd id="r-subtotal">—</dd>
+          <dt>Frete</dt><dd id="r-frete">—</dd>
+          <dt class="total">Total</dt><dd class="total" id="r-total">—</dd>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</main>
+</body>
+</html>

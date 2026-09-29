@@ -1,0 +1,11 @@
+# Copie para .dev.vars (nunca faça commit desse arquivo).
+# Em produção, cadastre os mesmos nomes como Secrets no Cloudflare Pages.
+
+# Mercado Pago > Suas integrações > Credenciais. Use as de TESTE no desenvolvimento.
+MP_ACCESS_TOKEN=TEST-0000000000000000-000000-00000000000000000000000000000000-000000000
+
+# Mercado Pago > Suas integrações > Webhooks > "Assinatura secreta".
+MP_WEBHOOK_SECRET=
+
+# Senha do painel /admin. Gere uma longa: `openssl rand -hex 24`
+ADMIN_TOKEN=troque-esta-senha

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Ponto Sem Nó</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+<style>
+  .admin-tabs { display: flex; gap: 8px; margin-block: 24px; flex-wrap: wrap; }
+  .admin-tabs button { font: inherit; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--linha); background: none; color: var(--cacau); cursor: pointer; }
+  .admin-tabs button[aria-selected="true"] { background: var(--cacau); color: var(--creme); border-color: var(--cacau); }
+  .tabela-wrap { overflow-x: auto; border: 1px solid var(--linha); border-radius: 4px; background: var(--branco); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 820px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--linha); vertical-align: middle; }
+  th { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; color: var(--texto-suave); background: var(--linho); }
+  td input[type=text], td input[type=number], td select { padding: 7px 9px; font-size: 14px; }
+  td .preco-in { width: 110px; } td .estoque-in { width: 70px; } td .ordem-in { width: 70px; }
+  td img { width: 44px; height: 55px; object-fit: cover; border-radius: 2px; }
+  .pill { display: inline-block; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--areia); white-space: nowrap; }
+  .pill.paid { background: #DDE7D2; color: var(--ok); } .pill.shipped { background: #D9E3EA; color: #2F4E63; }
+  .pill.delivered { background: var(--cacau); color: var(--areia); } .pill.cancelled, .pill.expired { background: #EFD9D5; color: var(--erro); }
+  .pill.review { background: var(--erro); color: #fff; }
+  .mini { padding: 8px 14px; font-size: 11px; }
+  .nova { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; background: var(--linho); padding: 20px; border-radius: 4px; margin-top: 28px; }
+  .nova h3 { grid-column: 1 / -1; font-size: 28px; }
+  .login { max-width: 420px; display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+  .endereco { font-size: 13px; color: var(--texto-suave); line-height: 1.5; }
+  @media (max-width: 640px) { .nova .campo { grid-column: span 6 !important; } }
+</style>
+<script type="module" src="/assets/admin.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="wrap"><a class="logo" href="/">Ponto <em>Sem Nó</em></a><button class="btn-link" id="sair" type="button" hidden>Sair</button></div></nav>
+<main class="pagina">
+  <div class="wrap">
+    <span class="eyebrow">Painel</span>
+    <h1>Ateliê <em>admin</em></h1>
+
+    <form class="login" id="login">
+      <div class="campo"><label for="token">Senha do painel</label><input id="token" type="password" autocomplete="current-password" required></div>
+      <button class="btn btn-solid" type="submit">Entrar</button>
+      <div class="msg erro" id="login-erro" hidden></div>
+    </form>
+
+    <div id="painel" hidden>
+      <div class="admin-tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="pedidos" type="button">Pedidos</button>
+        <button role="tab" aria-selected="false" data-tab="pecas" type="button">Peças</button>
+      </div>
+      <div class="msg" id="aviso" hidden></div>
+
+      <section id="tab-pedidos">
+        <div class="filtros" id="filtro-pedidos" style="margin-bottom:16px"></div>
+        <div class="tabela-wrap"><table>
+          <thead><tr><th>Pedido</th><th>Data</th><th>Cliente e entrega</th><th>Peças</th><th>Total</th><th>Status</th><th>Rastreio</th><th></th></tr></thead>
+          <tbody id="lista-pedidos"></tbody>
+        </table></div>
+      </section>
+
+      <section id="tab-pecas" hidden>
+        <p class="nota" style="margin-bottom:14px">Preço em reais (ex: 189,90). Estoque 0 = vendida. Desmarque "Ativa" para esconder do site.</p>
+        <div class="tabela-wrap"><table>
+          <thead><tr><th></th><th>Peça</th><th>Preço (R$)</th><th>Estoque</th><th>Ordem</th><th>Destaque</th><th>Ativa</th><th></th></tr></thead>
+          <tbody id="lista-pecas"></tbody>
+        </table></div>
+
+        <form class="nova" id="nova">
+          <h3>Nova peça</h3>
+          <div class="campo c3"><label for="n-nome">Nome</label><input id="n-nome" required></div>
+          <div class="campo c3"><label for="n-id">Identificador (vai no link)</label><input id="n-id" placeholder="bolsa-exemplo" required></div>
+          <div class="campo c2"><label for="n-cat">Categoria</label><select id="n-cat"><option>Bolsas</option><option>Pochetes</option><option>Tops</option><option>Blusas</option></select></div>
+          <div class="campo c2"><label for="n-preco">Preço (R$)</label><input id="n-preco" inputmode="decimal"></div>
+          <div class="campo c2"><label for="n-estoque">Estoque</label><input id="n-estoque" type="number" min="0" value="1"></div>
+          <div class="campo"><label for="n-desc">Descrição</label><textarea id="n-desc" rows="3"></textarea></div>
+          <div class="campo c3"><label for="n-det">Detalhes (um por linha)</label><textarea id="n-det" rows="4"></textarea></div>
+          <div class="campo c3"><label for="n-img">Fotos (arquivos em /public/img, um por linha)</label><textarea id="n-img" rows="4" placeholder="bolsa-exemplo.jpg"></textarea></div>
+          <div class="campo"><button class="btn btn-solid" type="submit">Cadastrar peça</button></div>
+        </form>
+      </section>
+    </div>
+  </div>
+</main>
+</body>
+</html>

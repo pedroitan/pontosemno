@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ponto Sem Nó · Crochet autoral feito à mão</title>
+<meta name="description" content="Bolsas, pochetes, tops e blusas de crochet feitos à mão. Peças autorais de pronta entrega.">
+<meta property="og:title" content="Ponto Sem Nó">
+<meta property="og:description" content="Crochet autoral feito à mão. Peças de pronta entrega.">
+<meta property="og:image" content="/img/bolsa-margarida-cru.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F5EFE4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="module" src="/assets/home.js"></script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Principal">
+  <div class="wrap">
+    <a class="logo" href="#inicio">Ponto <em>Sem Nó</em></a>
+    <div class="nav-links">
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+      </ul>
+      <button class="btn-sacola" id="abrir-sacola" type="button" aria-label="Abrir sacola">Sacola <b id="contador">0</b></button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <header class="hero" id="inicio">
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="eyebrow">Crochet autoral · Pronta entrega</span>
+        <h1>Cada ponto,<br><em>uma história.</em></h1>
+        <p class="lead">Bolsas, pochetes, tops e blusas feitos à mão, ponto a ponto, para quem valoriza o tempo e o cuidado que existem em cada peça.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#catalogo">Ver o catálogo</a>
+          <a class="btn" href="#sobre">Conheça o ateliê</a>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <img src="/img/bolsa-margarida-cru.jpg" alt="Bolsa tiracolo de crochet em fio cru com flor de madeira aplicada na aba" width="733" height="1100">
+        <figcaption><span>Em destaque</span>Bolsa Margarida Cru</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <div class="faixa" aria-hidden="true">
+    <div class="wrap">
+      <span>Bolsas</span><i>✦</i><span>Pochetes</span><i>✦</i><span>Tops</span><i>✦</i><span>Blusas</span><i>✦</i><span>Feito à mão com amor</span>
+    </div>
+  </div>
+
+  <section class="block" aria-labelledby="destaques-titulo">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Recém-saídas do ateliê</span>
+        <h2 id="destaques-titulo">Peças que <em>chegaram agora</em></h2>
+      </div>
+      <div class="destaques" id="destaques"><p class="carregando">Carregando peças…</p></div>
+    </div>
+  </section>
+
+  <section class="block sobre" id="sobre" aria-labelledby="sobre-titulo">
+    <div class="wrap">
+      <div class="sobre-imgs">
+        <img src="/img/processo-squares.jpg" alt="Squares de crochet em terracota com agulha de bambu sobre a mesa de trabalho" loading="lazy">
+        <img src="/img/square.jpg" alt="Detalhe de um square de crochet em terracota" loading="lazy">
+      </div>
+      <div class="sobre-text">
+        <span class="eyebrow">Sobre a marca</span>
+        <h2 id="sobre-titulo">Do fio <em>à obra.</em></h2>
+        <p>A Ponto Sem Nó nasceu da vontade de transformar fio em peça de afeto. Cada bolsa, top ou blusa começa com uma agulha, um novelo e muitas horas de trabalho manual, sem pressa e sem atalhos.</p>
+        <blockquote>“Não fazemos produtos. Fazemos tempo: tempo de mãos que tecem e de peças que duram.”</blockquote>
+        <p>Escolhemos os fios, as argolas e os acabamentos um a um. O resultado são peças com textura, caimento e personalidade, pensadas para acompanhar você por muitos anos.</p>
+        <div class="valores">
+          <div><strong>Feito à mão</strong><span>Cada ponto é tecido manualmente no nosso ateliê.</span></div>
+          <div><strong>Acabamento de cuidado</strong><span>Forros, zíperes, argolas e etiqueta de couro em cada peça.</span></div>
+          <div><strong>Pronta entrega</strong><span>Todas as peças do catálogo já estão prontas para seguir até você.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="catalogo" aria-labelledby="catalogo-titulo">
+    <div class="wrap">
+      <div class="cat-top">
+        <div class="section-head">
+          <span class="eyebrow">Catálogo</span>
+          <h2 id="catalogo-titulo">Disponíveis <em>no ateliê</em></h2>
+          <p>Trabalhamos apenas com peças em estoque. Muitas são únicas: quando saem, não voltam.</p>
+        </div>
+        <div class="filtros" role="group" aria-label="Filtrar por categoria" id="filtros"></div>
+      </div>
+      <div class="grade" id="grade"><p class="carregando">Carregando catálogo…</p></div>
+    </div>
+  </section>
+
+  <section class="block comprar" aria-labelledby="comprar-titulo">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Como comprar</span>
+        <h2 id="comprar-titulo">Simples, <em>como deve ser.</em></h2>
+      </div>
+      <ol class="passos">
+        <li><strong>Escolha sua peça</strong><span>Abra a ficha da peça e coloque na sacola.</span></li>
+        <li><strong>Pague com segurança</strong><span>Pix, cartão ou boleto pelo Mercado Pago. A peça fica reservada enquanto você paga.</span></li>
+        <li><strong>Receba em casa</strong><span>Embalamos com cuidado e enviamos o código de rastreio por e-mail.</span></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#inicio">Ponto <em>Sem Nó</em></a>
+      <p>Crochet autoral feito à mão com amor. Peças de pronta entrega.</p>
+    </div>
+    <div>
+      <h4>Navegue</h4>
+      <ul><li><a href="#inicio">Início</a></li><li><a href="#sobre">Sobre</a></li><li><a href="#catalogo">Catálogo</a></li></ul>
+    </div>
+    <div>
+      <h4>Fale com a gente</h4>
+      <ul>
+        <li><a data-insta href="#" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a data-whats href="#" target="_blank" rel="noopener">WhatsApp</a></li>
+      </ul>
+    </div>
+    <div class="copy">© <span data-ano></span> Ponto Sem Nó · Todos os direitos reservados</div>
+  </div>
+</footer>
+
+<dialog class="ficha" id="ficha" aria-labelledby="ficha-nome">
+  <div class="ficha-grid">
+    <div class="ficha-galeria">
+      <img id="ficha-img" src="" alt="">
+      <div class="thumbs" id="ficha-thumbs"></div>
+    </div>
+    <div class="ficha-info">
+      <button class="fechar" data-fechar type="button" aria-label="Fechar">×</button>
+      <span class="eyebrow" id="ficha-cat"></span>
+      <h3 id="ficha-nome"></h3>
+      <span class="preco" id="ficha-preco"></span>
+      <p id="ficha-desc"></p>
+      <ul class="detalhes" id="ficha-detalhes"></ul>
+      <div class="ficha-acoes">
+        <button class="btn btn-solid" id="ficha-add" type="button">Colocar na sacola</button>
+        <a class="btn" id="ficha-whats" href="#" target="_blank" rel="noopener">Tirar dúvidas no WhatsApp</a>
+        <span class="nota" id="ficha-nota"></span>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="sacola" id="sacola" aria-labelledby="sacola-titulo">
+  <div class="sacola-topo">
+    <h3 id="sacola-titulo">Sua sacola</h3>
+    <button class="fechar" data-fechar type="button" aria-label="Fechar sacola">×</button>
+  </div>
+  <div class="sacola-lista" id="sacola-lista"></div>
+  <div class="sacola-rodape" id="sacola-rodape">
+    <dl class="totais">
+      <dt>Subtotal</dt><dd id="s-subtotal">—</dd>
+      <dt>Frete</dt><dd id="s-frete">—</dd>
+      <dt class="total">Total</dt><dd class="total" id="s-total">—</dd>
+    </dl>
+    <a class="btn btn-solid" id="ir-checkout" href="/checkout.html">Finalizar compra</a>
+    <span class="nota">Pagamento seguro pelo Mercado Pago.</span>
+  </div>
+</dialog>
+
+</body>
+</html>
