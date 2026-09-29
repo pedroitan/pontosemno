@@ -17,6 +17,5 @@ RESERVATION_MINUTES = "30"
 [[d1_databases]]
 binding = "DB"
 database_name = "ponto-sem-no"
-# Rode `npx wrangler d1 create ponto-sem-no` e cole aqui o database_id retornado.
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "e964d4f3-5c3c-4892-8c4d-fed1ea49f678"
 migrations_dir = "migrations"
