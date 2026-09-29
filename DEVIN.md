@@ -26,7 +26,7 @@ Leia este arquivo inteiro antes de mexer no código. O `README.md` explica como 
 Navegador ──> public/*.html + assets/*.js (ES modules, sem build)
                  │  fetch /api/*
                  ▼
-Pages Functions (functions/api/**) ──> D1 (products, orders)
+functions/api/** compiladas p/ .worker ──> D1 (products, orders)
                  │
                  └──> Mercado Pago Checkout Pro (preferência) ──> webhook /api/webhooks/mercadopago
 ```
@@ -50,7 +50,7 @@ Estados do pedido: `pending → paid → shipped → delivered`; `pending → ex
 5. **Valores em centavos** (inteiros) em todo o backend e banco. Converter para reais só na borda (MP e interface).
 6. **Sem dados pessoais em logs.** Não logue e-mail, telefone, endereço nem tokens.
 7. **Escapar HTML** de qualquer dado do banco antes de usar `innerHTML` (use `esc()` de `assets/shop.js`).
-8. **Sem build step** enquanto não houver motivo forte. Se introduzir um, atualize README e as configurações do Pages.
+8. **Build só para a API.** `public/` segue sem build. As functions são compiladas com `npm run build` antes do `wrangler deploy` (necessário no modelo Workers; Pages Functions não rodam mais direto).
 
 ## Comandos
 
@@ -70,7 +70,7 @@ Mudanças no banco: crie `migrations/000N_descricao.sql`; nunca edite uma migrat
 Tarefas em ordem de prioridade. Cada uma deve terminar com `npm run typecheck` e o smoke test passando, e com o README atualizado se mudar algo de configuração.
 
 ### T1 · Publicação inicial
-- Criar D1 remoto, aplicar migrations e seed, conectar o repositório ao Cloudflare Pages (saída `public`, sem build).
+- Criar D1 remoto, aplicar migrations e seed, conectar o repositório via Workers Builds (build `npm run build`, deploy `npx wrangler deploy`).
 - Cadastrar secrets, preencher `SITE_URL`, configurar webhook no Mercado Pago.
 - Fazer uma compra com credenciais de teste do MP no ambiente publicado e confirmar pedido "pago" no `/admin`.
 - **Pronto quando:** compra de teste ponta a ponta funciona no domínio `*.pages.dev`.

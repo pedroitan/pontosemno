@@ -4,13 +4,14 @@
   "private": true,
   "description": "Loja online da Ponto Sem Nó — Cloudflare Pages + Functions + D1 + Mercado Pago",
   "scripts": {
-    "dev": "wrangler pages dev",
+    "dev": "wrangler pages dev public",
+    "build": "wrangler pages functions build --outdir=./.worker",
     "typecheck": "tsc --noEmit",
     "db:migrate:local": "wrangler d1 migrations apply ponto-sem-no --local",
     "db:seed:local": "wrangler d1 execute ponto-sem-no --local --file=seed/products.sql",
     "db:migrate:remote": "wrangler d1 migrations apply ponto-sem-no --remote",
     "db:seed:remote": "wrangler d1 execute ponto-sem-no --remote --file=seed/products.sql",
-    "deploy": "wrangler pages deploy"
+    "deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260926.1",

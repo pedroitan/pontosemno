@@ -2,7 +2,7 @@
 
 Loja de crochet autoral com catálogo, sacola, checkout pelo Mercado Pago (Pix, cartão e boleto), controle de estoque de peças únicas e painel administrativo.
 
-**Stack:** Cloudflare Pages (site estático) + Pages Functions (API em TypeScript) + D1 (banco SQLite) + Mercado Pago Checkout Pro. Sem etapa de build: o que está em `public/` vai direto para o ar.
+**Stack:** Cloudflare Workers (site estático em `public/` + API em `functions/` compilada para um Worker) + D1 (banco SQLite) + Mercado Pago Checkout Pro. O site não tem build; só a API é compilada (`npm run build`).
 
 ```
 public/              site (HTML, CSS, JS em módulos, fotos em /img)
@@ -42,7 +42,7 @@ ADMIN_TOKEN=uma-senha-longa MP_WEBHOOK_SECRET=segredo node scripts/smoke-test.mj
 
 O teste cobre reserva de estoque, compra simultânea da mesma peça, assinatura do webhook, pagamento aprovado e recusado, idempotência e o fluxo de envio no painel.
 
-## Publicar no Cloudflare Pages
+## Publicar na Cloudflare (Workers)
 
 ### 1. Banco de dados
 
@@ -58,28 +58,26 @@ npm run db:migrate:remote
 npm run db:seed:remote
 ```
 
-### 2. Projeto no Pages
+### 2. Projeto na Cloudflare
 
-**Opção A: pelo GitHub (recomendado, é como o Devin trabalha).** No painel Cloudflare: *Workers & Pages > Create > Pages > Connect to Git*, escolha o repositório e configure:
+**Opção A: pelo GitHub (recomendado).** No painel Cloudflare: *Workers & Pages > Create > Import a repository*, escolha o repositório e configure:
 
 | Campo | Valor |
 |---|---|
-| Framework preset | None |
-| Build command | *(vazio)* |
-| Build output directory | `public` |
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
 
-O `wrangler.toml` já leva o banco (D1) e as variáveis públicas. A cada push na branch principal o site é publicado.
+O `npm run build` compila `functions/` em `.worker/index.js` e o deploy sobe o Worker com os assets de `public/`. A cada push na `main` o site é publicado.
 
 **Opção B: pela linha de comando.**
 
 ```bash
-npx wrangler pages project create ponto-sem-no --production-branch main
-npm run deploy
+npm run deploy   # build das functions + wrangler deploy
 ```
 
 ### 3. Secrets
 
-No painel: *seu projeto > Settings > Variables and Secrets*, tipo **Secret**, ambiente **Production**:
+No painel: *seu Worker > Settings > Variables and Secrets*, tipo **Secret**:
 
 | Nome | Onde conseguir |
 |---|---|
@@ -87,7 +85,7 @@ No painel: *seu projeto > Settings > Variables and Secrets*, tipo **Secret**, am
 | `MP_WEBHOOK_SECRET` | Mercado Pago > Suas integrações > Webhooks > Assinatura secreta |
 | `ADMIN_TOKEN` | Invente uma senha longa (`openssl rand -hex 24`) |
 
-Ou pelo terminal: `npx wrangler pages secret put MP_ACCESS_TOKEN --project-name ponto-sem-no`.
+Ou pelo terminal: `npx wrangler secret put MP_ACCESS_TOKEN`.
 
 Depois, em `wrangler.toml`, preencha `SITE_URL` com o endereço final (ex.: `https://pontosemno.com.br`) e publique de novo.
 

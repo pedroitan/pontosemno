@@ -1,12 +1,17 @@
 name = "pontosemno"
-pages_build_output_dir = "public"
 compatibility_date = "2025-09-01"
+# As Pages Functions em functions/ são compiladas para .worker/index.js
+# pelo comando `npm run build` (wrangler pages functions build).
+main = "./.worker/index.js"
+
+[assets]
+directory = "./public"
 
 # Variáveis públicas (não secretas). Secrets vão em .dev.vars (local)
 # e em Settings > Variables and Secrets no painel do Cloudflare Pages.
 [vars]
 # URL pública do site. Em branco = usa a origem da requisição (bom para dev local).
-SITE_URL = ""
+SITE_URL = "https://pontosemno.pedroitan.workers.dev"
 # Frete fixo em centavos (2500 = R$ 25,00). AJUSTE antes de publicar.
 SHIPPING_FLAT_CENTS = "2500"
 # Frete grátis a partir deste subtotal em centavos. Em branco = desativado.
