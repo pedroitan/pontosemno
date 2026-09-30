@@ -9,6 +9,7 @@ public/              site (HTML, CSS, JS em módulos, fotos em /img)
   index.html         início, sobre, catálogo, sacola
   checkout.html      dados de entrega e ida ao pagamento
   pedido.html        status do pedido (volta do Mercado Pago)
+  /peca/:id          página pública de cada peça (SSR em functions/peca/[id].ts)
   admin/             painel: pedidos e peças
   assets/config.js   WhatsApp e Instagram da loja  ← editar
 functions/api/       rotas da API (cada arquivo = uma rota)

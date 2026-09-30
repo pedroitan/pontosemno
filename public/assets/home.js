@@ -107,7 +107,8 @@ function abrirFicha(p) {
     add.onclick = () => { addToCart(p.id, 1, p.stock); ficha.close(); abrirSacola(); };
     nota.textContent = p.stock === 1 ? "Peça única." : `${p.stock} disponíveis.`;
   }
-  $("#ficha-whats").href = waLink(`Olá! Vi no site da Ponto Sem Nó e tenho uma dúvida sobre a peça "${p.name}".`);
+  $("#ficha-whats").href = waLink(`Olá! Vi a peça "${p.name}" no site da Ponto Sem Nó (${location.origin}/peca/${p.id}) e tenho uma dúvida.`);
+  $("#ficha-pagina").href = `/peca/${p.id}`;
   history.replaceState(null, "", `#peca-${p.id}`);
   if (!ficha.open) ficha.showModal();
 }

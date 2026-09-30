@@ -15,6 +15,7 @@
 - Bolsas: tiracolo, de ombro e de mão, com detalhes em madeira e metal envelhecido.
 - Tops e blusas: frente única, franjas e aplicações.
 - O catálogo ao vivo está em https://crochepontosemno.com/api/products (JSON público).
+- Cada peça tem página própria: https://crochepontosemno.com/peca/{id} (ex.: /peca/bolsa-argila).
 
 ## Links
 
