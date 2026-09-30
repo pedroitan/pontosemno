@@ -3,3 +3,5 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /checkout.html
 Disallow: /pedido.html
+
+Sitemap: https://crochepontosemno.com/sitemap.xml

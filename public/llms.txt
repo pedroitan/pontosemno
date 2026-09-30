@@ -1,0 +1,24 @@
+# Ponto Sem Nó
+
+> Loja online de crochê autoral feito à mão: bolsas, pochetes, tops e blusas.
+> Peças únicas de pronta entrega, com envio para todo o Brasil.
+
+## Sobre
+
+- Marca brasileira de crochet/crochê autoral, feito à mão no próprio ateliê.
+- Vende apenas peças em estoque; muitas são únicas e não voltam quando vendem.
+- Pagamento via Mercado Pago (Pix, cartão e boleto). Frete calculado no checkout.
+- Site: https://crochepontosemno.com
+
+## Catálogo
+
+- Bolsas: tiracolo, de ombro e de mão, com detalhes em madeira e metal envelhecido.
+- Tops e blusas: frente única, franjas e aplicações.
+- O catálogo ao vivo está em https://crochepontosemno.com/api/products (JSON público).
+
+## Links
+
+- [Início](https://crochepontosemno.com/)
+- [Catálogo](https://crochepontosemno.com/#catalogo)
+- [Sobre a marca](https://crochepontosemno.com/#sobre)
+- [Instagram](https://www.instagram.com/pontosemno)
