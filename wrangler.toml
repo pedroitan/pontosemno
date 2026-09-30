@@ -4,6 +4,13 @@ compatibility_date = "2025-09-01"
 # pelo comando `npm run build` (wrangler pages functions build).
 main = "./.worker/index.js"
 
+# Domínio próprio. A Cloudflare cria os registros DNS sozinha
+# porque a zona já está na mesma conta.
+routes = [
+  { pattern = "crochepontosemno.com", zone_name = "crochepontosemno.com", custom_domain = true },
+  { pattern = "www.crochepontosemno.com", zone_name = "crochepontosemno.com", custom_domain = true },
+]
+
 [assets]
 directory = "./public"
 
@@ -11,7 +18,7 @@ directory = "./public"
 # e em Settings > Variables and Secrets no painel do Cloudflare Pages.
 [vars]
 # URL pública do site. Em branco = usa a origem da requisição (bom para dev local).
-SITE_URL = "https://pontosemno.pedroitan.workers.dev"
+SITE_URL = "https://crochepontosemno.com"
 # Frete fixo em centavos (2500 = R$ 25,00). AJUSTE antes de publicar.
 SHIPPING_FLAT_CENTS = "2500"
 # Frete grátis a partir deste subtotal em centavos. Em branco = desativado.

@@ -19,13 +19,13 @@ dashboard não aceita `wrangler pages deploy` — o token da build só tem permi
 - `npm run dev` = `wrangler pages dev public` (segue devendo Node 22 via `npx node@22`).
 - Deploy CI (dashboard): build `npm run build`, deploy `npx wrangler deploy`.
 - Deploy manual: `npm run deploy`.
-- Site: https://pontosemno.pedroitan.workers.dev
+- Site: https://crochepontosemno.com (e www.) — domínio via `routes` em `wrangler.toml`;
+  https://pontosemno.pedroitan.workers.dev continua funcionando.
 - D1 `ponto-sem-no` criado (id em `wrangler.toml`), migrado e com seed.
 - Secret `ADMIN_TOKEN` configurado (cópia local em `.admin-token.txt`, gitignored).
 
 ## Pendências
 
-- Secrets `MP_ACCESS_TOKEN` e `MP_WEBHOOK_SECRET` (credenciais do Mercado Pago).
-- Cadastrar webhook no painel do MP: `https://pontosemno.pedroitan.workers.dev/api/webhooks/mercadopago`.
+- Atualizar o webhook no painel do MP para `https://crochepontosemno.com/api/webhooks/mercadopago`
+  (a URL atual com workers.dev ainda funciona; novas preferências já usam o domínio via `SITE_URL`).
 - Definir preços das peças no `/admin`, WhatsApp/Instagram em `public/assets/config.js`, frete em `wrangler.toml`.
-- Domínio próprio: atualizar `SITE_URL` e o webhook do MP.
