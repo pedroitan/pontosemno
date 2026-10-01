@@ -29,3 +29,9 @@ dashboard não aceita `wrangler pages deploy` — o token da build só tem permi
 - Atualizar o webhook no painel do MP para `https://crochepontosemno.com/api/webhooks/mercadopago`
   (a URL atual com workers.dev ainda funciona; novas preferências já usam o domínio via `SITE_URL`).
 - Definir preços das peças no `/admin`, WhatsApp/Instagram em `public/assets/config.js`, frete em `wrangler.toml`.
+
+## Fotos do /admin (KV)
+
+- Fotos enviadas pelo painel vão para o KV `FOTOS` (id `632f9e2662a74782b3ddbdd9523d477c`), servidas em `/fotos/:key` com cache imutável.
+- `images` da peça guarda `fotos/<key>` (upload) ou o nome do arquivo em `public/img` (legado) — `img()` em `shop.js` e `peca/[id].ts` resolve os dois.
+- Upload é binário puro no corpo (o admin.js já redimensiona para WebP ≤1600px). R2 não foi usado porque exige ativação no dashboard.
