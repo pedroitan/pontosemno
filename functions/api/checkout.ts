@@ -110,7 +110,9 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
         title: i.name,
         quantity: i.qty,
         unit_price_cents: i.price_cents,
-        picture_url: byId.get(i.id)?.images[0] ? `${base}/img/${byId.get(i.id)!.images[0]}` : undefined,
+        picture_url: byId.get(i.id)?.images[0]
+          ? `${base}${byId.get(i.id)!.images[0].startsWith("fotos/") ? "/" : "/img/"}${encodeURI(byId.get(i.id)!.images[0])}`
+          : undefined,
       })),
       shippingCents: shipping,
       payer: customer,

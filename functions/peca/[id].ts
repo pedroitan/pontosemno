@@ -13,7 +13,7 @@ const safeJson = (o: unknown): string => JSON.stringify(o).replace(/</g, "\\u003
 const brl = (cents: number): string =>
   (cents / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-const img = (file: string): string => `/img/${encodeURI(file)}`;
+const img = (file: string): string => (file.startsWith("fotos/") ? `/${encodeURI(file)}` : `/img/${encodeURI(file)}`);
 
 function head(p: Product, base: string): string {
   const url = `${base}/peca/${p.id}`;

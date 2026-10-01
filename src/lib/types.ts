@@ -1,5 +1,6 @@
 export interface Env {
   DB: D1Database;
+  FOTOS: KVNamespace;
   MP_ACCESS_TOKEN: string;
   MP_WEBHOOK_SECRET?: string;
   ADMIN_TOKEN: string;

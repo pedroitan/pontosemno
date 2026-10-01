@@ -82,7 +82,9 @@
           <div class="campo c2"><label for="n-estoque">Estoque</label><input id="n-estoque" type="number" min="0" value="1"></div>
           <div class="campo"><label for="n-desc">Descrição</label><textarea id="n-desc" rows="3"></textarea></div>
           <div class="campo c3"><label for="n-det">Detalhes (um por linha)</label><textarea id="n-det" rows="4"></textarea></div>
-          <div class="campo c3"><label for="n-img">Fotos (arquivos em /public/img, um por linha)</label><textarea id="n-img" rows="4" placeholder="bolsa-exemplo.jpg"></textarea></div>
+          <div class="campo c3"><label for="n-img">Fotos (uma por linha)</label><textarea id="n-img" rows="4" placeholder="Envie abaixo — as fotos entram aqui"></textarea>
+            <input id="n-fotos" type="file" accept="image/jpeg,image/png,image/webp,image/avif" multiple hidden>
+            <button class="btn mini" id="n-fotos-btn" type="button" style="margin-top:8px">Enviar fotos</button></div>
           <div class="campo"><button class="btn btn-solid" type="submit">Cadastrar peça</button></div>
         </form>
       </section>

@@ -31,3 +31,8 @@ binding = "DB"
 database_name = "ponto-sem-no"
 database_id = "e964d4f3-5c3c-4892-8c4d-fed1ea49f678"
 migrations_dir = "migrations"
+
+# Fotos enviadas pelo /admin (o campo `images` da peça guarda "fotos/<key>").
+[[kv_namespaces]]
+binding = "FOTOS"
+id = "632f9e2662a74782b3ddbdd9523d477c"

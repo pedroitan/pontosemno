@@ -36,3 +36,11 @@ export const onRequestPatch: PagesFunction<Env> = async ({ request, env, params 
   if (r.meta.changes === 0) return fail(404, "Peça não encontrada.");
   return json({ ok: true });
 };
+
+// DELETE /api/admin/products/:id — exclui a peça (pedidos guardam cópia dos itens)
+export const onRequestDelete: PagesFunction<Env> = async ({ env, params }) => {
+  const id = String(params.id ?? "");
+  const r = await env.DB.prepare("DELETE FROM products WHERE id = ?").bind(id).run();
+  if (r.meta.changes === 0) return fail(404, "Peça não encontrada.");
+  return json({ ok: true });
+};

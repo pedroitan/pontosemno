@@ -7,7 +7,8 @@ export const brl = (cents) =>
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-export const img = (file) => `/img/${encodeURI(file)}`;
+// Fotos enviadas pelo /admin ficam no KV sob "fotos/<key>"; o resto é arquivo em /public/img.
+export const img = (file) => (file.startsWith("fotos/") ? `/${encodeURI(file)}` : `/img/${encodeURI(file)}`);
 
 export const waLink = (text) =>
   `https://wa.me/${WHATSAPP}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
