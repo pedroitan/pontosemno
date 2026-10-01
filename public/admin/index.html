@@ -27,6 +27,11 @@
   .mini { padding: 8px 14px; font-size: 11px; }
   .nova { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; background: var(--linho); padding: 20px; border-radius: 4px; margin-top: 28px; }
   .nova h3 { grid-column: 1 / -1; font-size: 28px; }
+  tr.edit-row td { background: var(--linho); padding: 16px 12px; }
+  tr.edit-row .edicao { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  tr.edit-row textarea, tr.edit-row input[type=text] { width: 100%; padding: 7px 9px; font-size: 14px; }
+  .campo label { display: block; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--texto-suave); margin-bottom: 5px; }
+  .campo input, .campo textarea, .campo select { width: 100%; }
   .login { max-width: 420px; display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
   .endereco { font-size: 13px; color: var(--texto-suave); line-height: 1.5; }
   @media (max-width: 640px) { .nova .campo { grid-column: span 6 !important; } }

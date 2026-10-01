@@ -120,14 +120,14 @@ async function carregarPecas() {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td><img src="${img(p.images[0] ?? "")}" alt=""></td>
-        <td><b>${esc(p.name)}</b><div class="nota">${esc(p.category)} · /#peca-${esc(p.id)}</div></td>
+        <td><b>${esc(p.name)}</b><div class="nota">${esc(p.category)} · <a href="/peca/${esc(p.id)}" target="_blank" rel="noopener">/peca/${esc(p.id)}</a></div></td>
         <td><input type="text" class="preco-in" inputmode="decimal" value="${fromCents(p.price_cents)}" placeholder="sem preço"></td>
         <td><input type="number" class="estoque-in" min="0" value="${p.stock}"></td>
         <td><input type="number" class="ordem-in" value="${p.sort}"></td>
         <td><input type="checkbox" class="dest-in" ${p.featured ? "checked" : ""} aria-label="Destaque"></td>
         <td><input type="checkbox" class="ativa-in" ${p.active ? "checked" : ""} aria-label="Ativa"></td>
-        <td><button class="btn mini" type="button">Salvar</button></td>`;
-      tr.querySelector("button").addEventListener("click", async () => {
+        <td><button class="btn mini" type="button">Salvar</button> <button class="btn-link editar" type="button">Editar</button></td>`;
+      tr.querySelector("button.btn").addEventListener("click", async () => {
         const cents = toCents(tr.querySelector(".preco-in").value);
         if (Number.isNaN(cents)) return aviso("Preço inválido. Use o formato 189,90.", false);
         const body = {
@@ -141,6 +141,32 @@ async function carregarPecas() {
         catch (e) { aviso(e.message, false); }
       });
       tbody.appendChild(tr);
+
+      // linha de edição completa (nome, categoria, descrição, detalhes, fotos)
+      const er = document.createElement("tr");
+      er.className = "edit-row"; er.hidden = true;
+      er.innerHTML = `<td colspan="8"><div class="edicao">
+        <div class="campo c3"><label>Nome</label><input type="text" class="e-nome" value="${esc(p.name)}"></div>
+        <div class="campo c3"><label>Categoria</label><input type="text" class="e-cat" value="${esc(p.category)}"></div>
+        <div class="campo" style="grid-column:1/-1"><label>Descrição</label><textarea class="e-desc" rows="3">${esc(p.description)}</textarea></div>
+        <div class="campo c3"><label>Detalhes (um por linha)</label><textarea class="e-det" rows="4">${esc(p.details.join("\n"))}</textarea></div>
+        <div class="campo c3"><label>Fotos (arquivos em /public/img, uma por linha)</label><textarea class="e-img" rows="4">${esc(p.images.join("\n"))}</textarea></div>
+        <div class="campo" style="grid-column:1/-1"><button class="btn mini salvar-edicao" type="button">Salvar edição</button></div>
+      </div></td>`;
+      tr.querySelector(".editar").addEventListener("click", () => { er.hidden = !er.hidden; });
+      er.querySelector(".salvar-edicao").addEventListener("click", async () => {
+        const lines = (sel) => er.querySelector(sel).value.split("\n").map((s) => s.trim()).filter(Boolean);
+        const body = {
+          name: er.querySelector(".e-nome").value,
+          category: er.querySelector(".e-cat").value,
+          description: er.querySelector(".e-desc").value,
+          details: lines(".e-det"),
+          images: lines(".e-img"),
+        };
+        try { await api(`/api/admin/products/${p.id}`, { method: "PATCH", body: JSON.stringify(body) }); aviso(`${p.name} atualizada.`); carregarPecas(); }
+        catch (e) { aviso(e.message, false); }
+      });
+      tbody.appendChild(er);
     });
   } catch (e) { tbody.innerHTML = `<tr><td colspan="8" class="nota">${esc(e.message)}</td></tr>`; }
 }
